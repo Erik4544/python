@@ -18,7 +18,6 @@ def generate_ball():
    )
    pygame.display.update()
 
-score=0
 WIDTH = 800
 HEIGHT = 800
 
@@ -26,8 +25,10 @@ pygame.init()
 main_screen=pygame.display.set_mode((WIDTH,HEIGHT))
 
 ball_x = ball_y = 0
+score=0
 
 clock = pygame.time.Clock()
+my_font = pygame.font.SysFont("roboto",16)
 
 while True:
     main_screen.fill((0,0,0))
@@ -39,9 +40,14 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x=event.pos[0]
             mouse_y=event.pos[1]
-            print(mouse_x, mouse_y)
+            print(mouse_x, mouse_y,score)
             if ball_x - 20 <=mouse_x <= ball_x + 20 and ball_y - 20 <=mouse_y <= ball_y + 20:
                 score+=1
+                generate_ball()
+    score_text=my_font.render(f"Score: {score}", True, (255,0,0))
+    main_screen.blit(score_text,(20,20))
+
+
 
 
 
