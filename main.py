@@ -243,7 +243,7 @@ def selection_sort(arr: list) -> list:
     for lowest_item in range(0,n-1):
         for position in range(lowest_item+1,n):
             if arr[lowest_item] > arr[position]:
-                arr[lowest_item], arr[position] = arr[position +1], arr[lowest_item]
+                arr[lowest_item], arr[position] = arr[position], arr[lowest_item]
     return arr
 
 
@@ -272,6 +272,21 @@ def quick_soft(arr: list) -> list:
     return arr
 
 
+def count_sort(arr: list) -> list:
+    mimimal=min(arr)
+    maximal=max(arr)
+    result_list=[]
+    count_table= dict.fromkeys([i for i in range(mimimal,maximal+1)], 0)
+
+    for number in arr:
+        count_table[number]+=1
+
+    for n, count in count_table.items():
+        result_list.extend([n]*count)
+
+    return arr
+
+
 
 
 
@@ -280,9 +295,16 @@ arr = [3,1,5,4,6,9,8,7,2]
 
 print(*arr)
 print(*bubbble_sort(arr))
+arr = [3,1,5,4,6,9,8,7,2]
 print(*bubbble_smart_sort(arr))
+arr = [3,1,5,4,6,9,8,7,2]
 print(*selection_sort(arr))
+arr = [3,1,5,4,6,9,8,7,2]
 print(*insert_sort(arr))
+arr = [3,1,5,4,6,9,8,7,2]
 print(*quick_soft(arr))
-
+arr = [3,1,5,4,6,9,8,7,2]
+print(*count_sort(arr))
+arr = [3,1,5,4,6,9,8,7,2]
+print(*arr)
 
