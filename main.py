@@ -216,5 +216,62 @@
 # print(translit_text)
 
 
+def bubbble_sort(arr: list) -> list:
+    n = len(arr)
+    for step in range(1,n):
+        for bubble in range(0,n-step):
+            if arr[bubble] > arr [bubble +1]:
+                arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
+    return arr
 
-arr = [3,2,1,5,4,6,9,8,7]
+
+def bubbble_smart_sort(arr: list) -> list:
+    n = len(arr)
+    for step in range(1,n):
+        is_sorted = True
+        for bubble in range(0,n-step):
+            if arr[bubble] > arr [bubble +1]:
+                arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
+                is_sorted=False
+        if is_sorted:
+            break
+    return arr
+
+
+def selection_sort(arr: list) -> list:
+    n = len(arr)
+    for lowest_item in range(0,n-1):
+        for position in range(lowest_item+1,n):
+            if arr[lowest_item] > arr[position]:
+                arr[lowest_item], arr[position] = arr[position +1], arr[lowest_item]
+    return arr
+
+
+def insert_sort(arr: list) -> list:
+    n = len(arr)
+    for step in range(1,n):
+        new_item_idex=step
+        while new_item_idex > 0 and arr[new_item_idex] < arr[new_item_idex-1]:
+            arr[new_item_idex], arr[new_item_idex-1] = arr[new_item_idex-1], arr[new_item_idex]
+            new_item_idex -=1
+    return arr
+
+
+def quick_soft(arr: list) -> list:
+    less=[]
+    equals=[]
+    bigger=[]
+
+
+
+
+
+arr = [3,1,5,4,6,9,8,7,2]
+
+print(*arr)
+print(*bubbble_sort(arr))
+print(*bubbble_smart_sort(arr))
+print(*selection_sort(arr))
+print(*insert_sort(arr))
+
+
