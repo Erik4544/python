@@ -261,6 +261,16 @@ def quick_soft(arr: list) -> list:
     less=[]
     equals=[]
     bigger=[]
+    pivot=arr[0]
+    for elem in arr:
+        if elem < pivot:
+            less.append(elem)
+        elif elem > pivot:
+            bigger.append(elem)
+        else:
+            equals.append(elem)
+    return arr
+
 
 
 
@@ -273,5 +283,6 @@ print(*bubbble_sort(arr))
 print(*bubbble_smart_sort(arr))
 print(*selection_sort(arr))
 print(*insert_sort(arr))
+print(*quick_soft(arr))
 
 
