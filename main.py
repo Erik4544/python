@@ -324,6 +324,9 @@ with open("ban_word.txt", "r",encoding="utf-8") as ban_word_file:
                         clean_file.write("*"*len(current_word+char))
                     else:
                         clean_file.write(current_word + char)
+                    current_word=""
+            if current_word in all_ban_word:
+                clean_file.write("*" * len(current_word + char))
 
 
 
