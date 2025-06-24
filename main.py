@@ -53,7 +53,8 @@
 #
 #     generate_ball()
 #     pygame.display.update()
-
+from ctypes import c_char_p
+from distutils.command.clean import clean
 
 # import json
 #
@@ -216,95 +217,155 @@
 # print(translit_text)
 
 
-def bubbble_sort(arr: list) -> list:
-    n = len(arr)
-    for step in range(1,n):
-        for bubble in range(0,n-step):
-            if arr[bubble] > arr [bubble +1]:
-                arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
-    return arr
+# def bubbble_sort(arr: list) -> list:
+#     n = len(arr)
+#     for step in range(1,n):
+#         for bubble in range(0,n-step):
+#             if arr[bubble] > arr [bubble +1]:
+#                 arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
+#     return arr
+#
+#
+# def bubbble_smart_sort(arr: list) -> list:
+#     n = len(arr)
+#     for step in range(1,n):
+#         is_sorted = True
+#         for bubble in range(0,n-step):
+#             if arr[bubble] > arr [bubble +1]:
+#                 arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
+#                 is_sorted=False
+#         if is_sorted:
+#             break
+#     return arr
+#
+#
+# def selection_sort(arr: list) -> list:
+#     n = len(arr)
+#     for lowest_item in range(0,n-1):
+#         for position in range(lowest_item+1,n):
+#             if arr[lowest_item] > arr[position]:
+#                 arr[lowest_item], arr[position] = arr[position], arr[lowest_item]
+#     return arr
+#
+#
+# def insert_sort(arr: list) -> list:
+#     n = len(arr)
+#     for step in range(1,n):
+#         new_item_idex=step
+#         while new_item_idex > 0 and arr[new_item_idex] < arr[new_item_idex-1]:
+#             arr[new_item_idex], arr[new_item_idex-1] = arr[new_item_idex-1], arr[new_item_idex]
+#             new_item_idex -=1
+#     return arr
+#
+#
+# def quick_soft(arr: list) -> list:
+#     less=[]
+#     equals=[]
+#     bigger=[]
+#     pivot=arr[0]
+#     for elem in arr:
+#         if elem < pivot:
+#             less.append(elem)
+#         elif elem > pivot:
+#             bigger.append(elem)
+#         else:
+#             equals.append(elem)
+#     return arr
+#
+#
+# def count_sort(arr: list) -> list:
+#     mimimal=min(arr)
+#     maximal=max(arr)
+#     result_list=[]
+#     count_table= dict.fromkeys([i for i in range(mimimal,maximal+1)], 0)
+#
+#     for number in arr:
+#         count_table[number]+=1
+#
+#     for n, count in count_table.items():
+#         result_list.extend([n]*count)
+#
+#     return arr
+#
+#
+#
+#
+#
+#
+# arr = [3,1,5,4,6,9,8,7,2]
+#
+# print(*arr)
+# print(*bubbble_sort(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*bubbble_smart_sort(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*selection_sort(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*insert_sort(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*quick_soft(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*count_sort(arr))
+# arr = [3,1,5,4,6,9,8,7,2]
+# print(*arr)
 
 
-def bubbble_smart_sort(arr: list) -> list:
-    n = len(arr)
-    for step in range(1,n):
-        is_sorted = True
-        for bubble in range(0,n-step):
-            if arr[bubble] > arr [bubble +1]:
-                arr[bubble], arr[bubble + 1] = arr [bubble +1], arr[bubble]
-                is_sorted=False
-        if is_sorted:
-            break
-    return arr
-
-
-def selection_sort(arr: list) -> list:
-    n = len(arr)
-    for lowest_item in range(0,n-1):
-        for position in range(lowest_item+1,n):
-            if arr[lowest_item] > arr[position]:
-                arr[lowest_item], arr[position] = arr[position], arr[lowest_item]
-    return arr
-
-
-def insert_sort(arr: list) -> list:
-    n = len(arr)
-    for step in range(1,n):
-        new_item_idex=step
-        while new_item_idex > 0 and arr[new_item_idex] < arr[new_item_idex-1]:
-            arr[new_item_idex], arr[new_item_idex-1] = arr[new_item_idex-1], arr[new_item_idex]
-            new_item_idex -=1
-    return arr
-
-
-def quick_soft(arr: list) -> list:
-    less=[]
-    equals=[]
-    bigger=[]
-    pivot=arr[0]
-    for elem in arr:
-        if elem < pivot:
-            less.append(elem)
-        elif elem > pivot:
-            bigger.append(elem)
-        else:
-            equals.append(elem)
-    return arr
-
-
-def count_sort(arr: list) -> list:
-    mimimal=min(arr)
-    maximal=max(arr)
-    result_list=[]
-    count_table= dict.fromkeys([i for i in range(mimimal,maximal+1)], 0)
-
-    for number in arr:
-        count_table[number]+=1
-
-    for n, count in count_table.items():
-        result_list.extend([n]*count)
-
-    return arr
+with open("ban_word.txt", "r",encoding="utf-8") as ban_word_file:
+    with open("shat.txt", "r", encoding="utf-8") as shat_file:
+        with open("clean.txt", "w", encoding="utf-8") as clean_file:
+            all_ban_word=set(ban_word_file.read().split("\n"))
+            chat_text=shat_file.read()
+            current_word=""
+            for char in chat_text:
+                if char.isalpha():
+                    current_word+=char
+                else:
+                    if current_word in all_ban_word:
+                        clean_file.write("*"*len(current_word+char))
+                    else:
+                        clean_file.write(current_word + char)
 
 
 
 
 
 
-arr = [3,1,5,4,6,9,8,7,2]
 
-print(*arr)
-print(*bubbble_sort(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*bubbble_smart_sort(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*selection_sort(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*insert_sort(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*quick_soft(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*count_sort(arr))
-arr = [3,1,5,4,6,9,8,7,2]
-print(*arr)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
