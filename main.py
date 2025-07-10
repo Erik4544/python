@@ -606,11 +606,30 @@ from distutils.command.clean import clean
 
 
 
+class Fraction:
+    def __init__(self, numerator: int, denominator: int):
+        if isinstance(numerator, int) is False or isinstance(denominator, int) is False:
+            raise TypeError("Numerator and denominator must be only integer value")
+
+        if denominator == 0:
+            raise  ValueError("Denominator must not be equal 0.")
 
 
+        self.a = numerator
+        self.b = denominator
+
+    def __str__(self):
+        return f"{self.a}/{self.b}"
+
+    def plus(self, other):
+        return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
 
 
-
+first_number = Fraction(1,4)
+second_number = Fraction(3,5)
+print(first_number)
+print(second_number)
+print(first_number.plus(second_number))
 
 
 
