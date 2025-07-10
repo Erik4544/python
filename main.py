@@ -53,7 +53,7 @@
 #
 #     generate_ball()
 #     pygame.display.update()
-from ctypes import c_char_p
+from ctypes import c_char_p, c_short
 from distutils.command.clean import clean
 
 # import json
@@ -310,23 +310,154 @@ from distutils.command.clean import clean
 # print(*arr)
 
 
-with open("ban_word.txt", "r",encoding="utf-8") as ban_word_file:
-    with open("shat.txt", "r", encoding="utf-8") as shat_file:
-        with open("clean.txt", "w", encoding="utf-8") as clean_file:
-            all_ban_word=set(ban_word_file.read().split("\n"))
-            chat_text=shat_file.read()
-            current_word=""
-            for char in chat_text:
-                if char.isalpha():
-                    current_word+=char
-                else:
-                    if current_word in all_ban_word:
-                        clean_file.write("*"*len(current_word+char))
-                    else:
-                        clean_file.write(current_word + char)
-                    current_word=""
-            if current_word in all_ban_word:
-                clean_file.write("*" * len(current_word + char))
+# with open("ban_word.txt", "r",encoding="utf-8") as ban_word_file:
+#     with open("shat.txt", "r", encoding="utf-8") as shat_file:
+#         with open("clean.txt", "w", encoding="utf-8") as clean_file:
+#             all_ban_word=set(ban_word_file.read().split("\n"))
+#             chat_text=shat_file.read()
+#             current_word=""
+#             for char in chat_text:
+#                 if char.isalpha():
+#                     current_word+=char
+#                 else:
+#                     if current_word in all_ban_word:
+#                         clean_file.write("*"*len(current_word+char))
+#                     else:
+#                         clean_file.write(current_word + char)
+#                     current_word=""
+#             if current_word in all_ban_word:
+#                 clean_file.write("*" * len(current_word + char))
+
+##############################################################################################################################
+
+# class Photo:
+#
+#     @staticmethod
+#     def make_photo():
+#         print("making photo")
+#
+# class VideoPlayer:
+#
+#     @staticmethod
+#     def play_video():
+#         print("playing video")
+#
+#
+# class SmartPhone(Photo, VideoPlayer):
+#
+#     @staticmethod
+#     def call():
+#         print("phone is calling")
+#
+#
+# Photo.make_photo()
+# VideoPlayer.play_video()
+# SmartPhone.call()
+# SmartPhone.play_video()
+# SmartPhone.make_photo()
+#
+# s25 = SmartPhone
+# s25.make_photo()
+
+
+# class A:
+#
+#     @staticmethod
+#     def a_method():
+#         print("this is A method")
+#
+#
+# class B(A):
+#
+#     @staticmethod
+#     def b_method():
+#         print("this is B method")
+#
+#
+# class C(B):
+#
+#     @staticmethod
+#     def c_method():
+#         print("this is C method")
+#
+#
+#
+# C.a_method()
+
+
+# class A:
+#     @staticmethod
+#     def test_method():
+#         print("this is A method")
+#
+#
+# class B:
+#     @staticmethod
+#     def test_method():
+#         print("this is B method")
+#
+# class C(A, B):
+#     @staticmethod
+#     def test():
+#         pass
+#
+#
+# C.test()
+# C.test_method()
+
+
+
+class Animal:
+    def __init__(self, name, age, weight):
+        self.name = name
+        self.age = age
+        self.weight = weight
+
+    def get_info(self):
+        return f"{self.__class__}{self.name}{self.age}{self.weight}"
+
+
+    def say(self):
+        print("animal say something")
+
+
+class Tiger(Animal):
+    def __init__(self, name, age, weight, height):
+        super().__init__(name, age, weight)
+        self.height = height
+
+    def say(self):
+        print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
+
+
+class Crocodile(Animal):
+    def __init__(self, name, age, weight, height):
+        super().__init__(name, age, weight)
+        self.height = height
+
+    def say(self):
+        print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
+
+
+sherhan = Tiger("sher Han", 25, 400, 200)
+sherhan.say()
+print(sherhan.get_info())
+
+sherhan = Tiger("sher Han", 25, 400, 200)
+sherhan.say()
+print(sherhan.get_info())
+
+sherhan = Tiger("sher Han", 25, 400, 200)
+sherhan.say()
+print(sherhan.get_info())
+
+
+
+
+
+
+
+
 
 
 
