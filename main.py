@@ -407,81 +407,201 @@ from distutils.command.clean import clean
 
 
 
-class Animal:
-    def __init__(self, name, age, weight):
-        self.name = name
-        self.age = age
-        self.weight = weight
+# class Animal:
+#     def __init__(self, name, age, weight):
+#         self.name = name
+#         self.age = age
+#         self.weight = weight
+#
+#     def get_info(self):
+#         return f"{self.__class__}{self.name}{self.age}{self.weight}"
+#
+#
+#     def say(self):
+#         print("animal say something")
+#
+#
+# class Tiger(Animal):
+#     def __init__(self, name, age, weight, height):
+#         super().__init__(name, age, weight)
+#         self.height = height
+#
+#     def say(self):
+#         print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
+#
+#
+# class Crocodile(Animal):
+#     def __init__(self, name, age, weight, height):
+#         super().__init__(name, age, weight)
+#         self.height = height
+#
+#     def say(self):
+#         print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
+#
+#
+# sherhan = Tiger("sher Han", 25, 400, 200)
+# sherhan.say()
+# print(sherhan.get_info())
+#
+# sherhan = Tiger("sher Han", 25, 400, 200)
+# sherhan.say()
+# print(sherhan.get_info())
+#
+# sherhan = Tiger("sher Han", 25, 400, 200)
+# sherhan.say()
+# print(sherhan.get_info())
 
-    def get_info(self):
-        return f"{self.__class__}{self.name}{self.age}{self.weight}"
+# import math
+#
+#
+# class Figure:
+#     def __init__(self, side=1, is_evklid_geometry=True):
+#         self.is_evklid_geometry = is_evklid_geometry
+#
+#     def area(self):
+#         return self.side**2
+#
+#     def perimeter(self):
+#         return self.side * 4
+#
+#
+# class Circle(Figure):
+#     def __init__(self, radius=1  , is_evklid_geometry=True):
+#         super().__init__(is_evklid_geometry)
+#         self.radius = radius
+#
+#     def area(self):
+#         return math.pi * self.radius**2
+#
+#     def perimeter(self):
+#         return math.pi * self.radius * 2
+#
+#
+# class Squre(Figure):
+#     def __init__(self, side=1, is_evklid_geometry=True):
+#         super().__init__(is_evklid_geometry)
+#         self.side = side
+#
+#     def area(self):
+#         return self.side**2
+#
+#     def perimeter(self):
+#         return self.side * 4
+#
+#
+# kolobok = Circle(25)
+# print(kolobok.area())                   # 1963.4954084936207
+# print(kolobok.perimeter())              # 157.07963267948966
+#
+# test_cpickle = Circle(50)
+# print(test_cpickle.area())              # 7853.981633974483
+# print(test_cpickle.perimeter())         # 314.1592653589793
 
 
-    def say(self):
-        print("animal say something")
-
-
-class Tiger(Animal):
-    def __init__(self, name, age, weight, height):
-        super().__init__(name, age, weight)
-        self.height = height
-
-    def say(self):
-        print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
-
-
-class Crocodile(Animal):
-    def __init__(self, name, age, weight, height):
-        super().__init__(name, age, weight)
-        self.height = height
-
-    def say(self):
-        print("ARRRRRRRRRRRRRRRR MEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOW!")
-
-
-sherhan = Tiger("sher Han", 25, 400, 200)
-sherhan.say()
-print(sherhan.get_info())
-
-sherhan = Tiger("sher Han", 25, 400, 200)
-sherhan.say()
-print(sherhan.get_info())
-
-sherhan = Tiger("sher Han", 25, 400, 200)
-sherhan.say()
-print(sherhan.get_info())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# from abc import ABC, abstractmethod
+#
+#
+# class Weapon(ABC):
+#     def __init__(self, name, damage, price):
+#         self.name = name
+#         self.damage = damage
+#         self.price = price
+#
+#     @abstractmethod
+#     def fire(self):
+#         pass
+#
+#     @abstractmethod
+#     def reload(self):
+#         pass
+#
+#
+# class Rifle(Weapon):
+#     def __init__(self, name, damage, price, rate_of_fire, count_of_bullets):
+#         super().__init__(name, damage, price)
+#         self.rate_of_fire = rate_of_fire
+#         self.count_of_bullets = count_of_bullets
+#
+#     def fire(self):
+#         if self.count_of_bullets > 0:
+#             print(f"{self.name} is shooting on target! Damage is {self.damage}")
+#             self.count_of_bullets-=1
+#         else:
+#             print("Empty bullets.")
+#
+#     def reload(self):
+#         self.count_of_bullets=30
+#         print(f"{self.name} is reloading. Current bullet count is {self.count_of_bullets}")
+#
+#
+# class LaserGun(Weapon):
+#     def __init__(self, name, damage, price, rate_of_fire, energy_charge):
+#         super().__init__(name, damage, price)
+#         self.rate_of_fire = rate_of_fire
+#         self.energy_charge = energy_charge
+#
+#     def fire(self):
+#         print(f"{self.name} fire with laser to target.")
+#
+#     def reload(self):
+#         print(f"{self.name} is overheating. Stop shooting")
+#
+#
+# class Sword(Weapon):
+#     def __init__(self, name, damage, price, length, is_two_handed=False):
+#         super().__init__(name, damage, price)
+#         self.length = length
+#         self.is_two_handed = is_two_handed
+#
+#     def fire(self):
+#         print(f"Attack with {self.name}. Target damaged {self.damage} hp.")
+#
+#     def reload(self):
+#         print(f"new swing.")
+#
+#
+# ak_47 = Rifle(name="AK-47", damage=60, price=50_000, rate_of_fire=80, count_of_bullets=3)
+#
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.fire()
+# ak_47.reload()
+#
+# m16 = Rifle(name="M16", damage=60, price=50_000, rate_of_fire=90, count_of_bullets=4)
+#
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.fire()
+# m16.reload()
+#
+# death_star = LaserGun("death_star", 1_000_000_000, 100_000_000_000, 0.0001, 100_000_000_000)
+#
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.fire()
+# death_star.reload()
+#
+#
+# claymore = Sword(name="claymore", damage=15, price=15_000, length=1.5, is_two_handed=True)
+#
+# claymore.fire()
+# claymore.fire()
+# claymore.reload()
 
 
 
