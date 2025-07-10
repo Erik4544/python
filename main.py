@@ -653,12 +653,22 @@ class Fraction:
         """
         return Fraction(self.a * other.b, self.b * other.a)
 
+    def __add__(self, other):
+        """
+        Вернёт новую дробь.
+        :param other:  другой обект
+        :return: новый обект
+        """
+        return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
+
+
 
 first_number = Fraction(1,4)
 second_number = Fraction(3,5)
 print(first_number)
 print(second_number)
 print(first_number.plus(second_number))
+print(first_number + second_number)
 
 
 
