@@ -629,6 +629,30 @@ class Fraction:
         """
         return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
 
+    def minus(self, other):
+        """
+        Вернёт новую дробь.
+        :param other:  другой обект
+        :return: новый обект
+        """
+        return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
+
+    def multiplication(self, other):
+        """
+        Вернёт новую дробь.
+        :param other:  другой обект
+        :return: новый обект
+        """
+        return Fraction(self.a * other.b, self.b * other.a)
+
+    def divide(self, other):
+        """
+        Вернёт новую дробь.
+        :param other:  другой обект
+        :return: новый обект
+        """
+        return Fraction(self.a * other.b, self.b * other.a)
+
 
 first_number = Fraction(1,4)
 second_number = Fraction(3,5)
