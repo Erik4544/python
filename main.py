@@ -622,6 +622,11 @@ class Fraction:
         return f"{self.a}/{self.b}"
 
     def plus(self, other):
+        """
+        Вернёт новую дробь.
+        :param other:  другой обект
+        :return: новый обект
+        """
         return Fraction(self.a * other.b + self.b * other.a, self.b * other.b)
 
 
