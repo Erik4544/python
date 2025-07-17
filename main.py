@@ -925,12 +925,121 @@
 #
 
 
+# from collections import deque
+# from queue import Queue
+# import math
+#
+# graph = {
+#     "A": ("B","C","D"),
+#     "B": ("A","C","E"),
+#     "C": ("A","B","Z"),
+#     "D": ("A","Z"),
+#     "E": ("B","Z","F","G"),
+#     "Z": ("C","D","E","F"),
+#     "F": ("Z","E","G"),
+#     "G": ("E","F"),
+# }
+#
+#
+# start_point = "A"
+#
+#
+#
+# distances = {}
+#
+#
+# for point in graph:
+#     distances[point] = math.inf
+#
+# distances[start_point] = 0
+# print(distances)
+#
+#
+# point_queue = deque(start_point)
+#
+# while point_queue:
+#     current_point = point_queue.popleft()
+#     for neighbour in graph[current_point]:
+#         if distances[current_point] + 1 < distances[neighbour]:
+#             distances[neighbour] = distances[current_point] + 1
+#             point_queue.append(neighbour)
+#
+# print(distances)
+#
+# finish = "G"
+#
+# print()
+# print(f"финиш; {finish}")
+# print(f"старт; {start_point}")
+# print()
+#
+# path = []
+#
+# while True:
+#     path.append(finish)
+#     current_distances = distances[finish]
+#     for neighbour in graph[finish]:
+#         if current_distances - 1 == distances[neighbour]:
+#             finish = neighbour
+#             break
+#     if finish == start_point:
+#         path.append(finish)
+#         break
+#
+# print(*path[::-1], sep=" => ")
+
+
+
+
+
+
+
 from collections import deque
+import math
+
+graph = {
+    "A": {"B": 1_000 ,"C": 200,"D": 300},
+    "B": {"A": 1_000 ,"C": 50,"F": 500},
+    "C": {"A": 200 ,"B": 50,"D": 20,"E": 70},
+    "D": {"A": 300 ,"C": 20,"E": 10},
+    "E": {"C": 70 ,"D": 10,"F": 90},
+    "F": {"B": 500 ,"C": 2000,"E": 90},
+}
 
 
+distances = {}
+for point in graph:
+    distances[point] = math.inf
 
+start_point = "A"
+distances[start_point] = 0
+print(distances)
 
+point_queue = deque(start_point)
 
+while point_queue:
+    current_point = point_queue.popleft()
+    for neighbour in graph[current_point]:
+        if distances[current_point] + graph[current_point][neighbour] < distances[neighbour]:
+            distances[neighbour] = distances[current_point] + graph[current_point][neighbour]
+            point_queue.append(neighbour)
+
+print(distances)
+
+finish_point = "F"
+path = []
+
+while True:
+    path.append(finish_point)
+    for neighbour in graph[finish_point]:
+        if distances[finish_point] - graph[finish_point][neighbour] == distances[neighbour]:
+            finish_point = neighbour
+
+    if finish_point == start_point:
+            path.append(finish_point)
+            break
+finish_point = "F"
+print(*path[::-1], sep=" => ")
 
 
 
